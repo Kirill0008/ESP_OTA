@@ -1,3 +1,6 @@
+// Based on:
+// - BasicOTA example from ESP8266 Arduino Core (LGPL-2.1)
+// - BasicOTA example from ESP32 Arduino Core (MIT)
 #ifndef EasyOTA_h
 #define EasyOTA_h
 
