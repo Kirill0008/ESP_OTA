@@ -1,0 +1,31 @@
+#include "EasyOTA.h"
+EasyOTA ota; // Создаём экземпляр класса
+const char* ssid = "ssid";
+const char* wifi_pass = "pass";
+void setup() {
+    Serial.begin(115200);
+    // Опциональные настройки
+    //ota.setHostname("MySmartDevice");  // Установка имени устройства
+    ota.setPassword("OtaPass");   // Пароль для обновлений
+    // Callback-функции
+    ota.onStartCallback = []() {
+        Serial.println("Starting update...");
+        digitalWrite(LED_BUILTIN, LOW); // Пример: включение LED при обновлении
+    };
+    
+    ota.onEndCallback = []() {
+        Serial.println("Update complete!");
+        digitalWrite(LED_BUILTIN, HIGH);
+    };
+
+    // Инициализация
+    ota.begin(ssid, wifi_pass);
+    // Другой ваш код...
+
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  ota.handle(); // Обязательный вызов в loop()
+// Другой ваш код...
+}
